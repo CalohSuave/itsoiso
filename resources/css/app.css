@@ -1,0 +1,68 @@
+
+
+/* code added */
+*{
+  box-sizing: border-box;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .column1 {
+    float: left;
+    width: 100%;
+    
+  }
+    
+  .column2 {
+      float: left;
+      width: 100%;
+      text-align: center;
+      padding-top: 2.5rem;
+      margin-top: 5.5rem;
+      border-radius: 1rem;
+      margin-left: 0 !important;
+  }
+
+    .row .contenedor{
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 15%;
+    }
+}
+
+
+/* Set additional styling options for the columns*/
+.column1 {
+float: left;
+width: 47%;
+padding: 0 !important;
+}
+
+.column2 {
+  float: left;
+  width: 47%;
+  text-align: center;
+  padding-top: 2.5rem;
+  margin-left: 2.5rem;
+  border-radius: 1rem;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+.row .contenedor{
+  margin-top: 15%;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0 !important;
+  color: white;
+  text-align: center;
+}
