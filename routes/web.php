@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
 Route::get('main/successlogin', [UserControllerExample::class,'successlogin']);
 Route::get('main/logout', [UserControllerExample::class,'logout']);
+Route::get('/main/create', function () {
+    return view('create_iso');
+});
 //Route::get('main/logout', 'MainController@logout');
 
 //Route::get('main/logout', 'MainController@logout');

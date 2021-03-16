@@ -30,8 +30,8 @@
       <tr>
         <th scope="row">Linux Ubuntu LTS</th>
         <td>21-04-2019 18:56</td>
-        <td>18GB</td>
-        <td><a href="#">Sí</a></td>
+        <td>366MB</td>
+        <td><a href="/isos/Ubuntu_LTS.iso" download>Sí</a></td>
       </tr>
       <tr>
         <th scope="row">AIX</th>
@@ -41,7 +41,7 @@
       </tr>
     </tbody>
   </table>
-  <form method="get" action="/create">
+  <form method="get" action="{{ url('/main/create') }}">
 		<input type="submit" class="btn btn-primary" id="create" name="create" value="Create" style="margin-right:10px">
 	</form>
   </div> 
@@ -52,7 +52,7 @@
         <div class="d-flex align-items-center">
             <div class="image"> <img src="/images/picpf.png"  class="rounded" width="175"> </div>
             <div class="ml-3 w-100">
-                <h4 class="mb-0 mt-0"><strong> {{ Auth::user()->name }}</strong></h4> <span>Junior Developer</span>
+                <h4 class="mb-0 mt-0"><strong> {{ Auth::user()->name }} {{ Auth::user()->surname }}</strong></h4> <span>Junior Developer</span>
                 <div class="p-2 mt-2 bg-primary d-flex justify-content-center rounded text-white stats">
                     <div class="d-flex flex-column"> <span>Plan Contratado</span> <span class="number3">Basic</span> 
                 </div>          
