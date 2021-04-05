@@ -17,7 +17,7 @@ use App\Http\Controllers\UserControllerExample;
 Route::group(['middleware' => 'prevent-back-history'],function(){
   Auth::routes();
   Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
-  Route::get('main/successlogin', [UserControllerExample::class,'successlogin']);
+  Route::get('main', [UserControllerExample::class,'successlogin']);
   Route::get('main/logout', [UserControllerExample::class,'logout']);
   Route::get('/main/create', function () { return view('create_iso');});
   Route::get('/', function () { return view('welcome'); });
@@ -31,7 +31,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 //Route::post('/uploadfile', 'UploadfileController@upload');
 //Route::get('/main', 'MainController@index');
 
-
+ 
 //Route::get('users',[UserControllerExample::class,'index']);
 
 

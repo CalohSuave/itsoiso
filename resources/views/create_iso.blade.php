@@ -16,6 +16,7 @@ form label {
 @else
 
 
+
   <form style="margin-top: 5rem;">
   <div class="form-row">
     <div class="form-group col-md-3">
@@ -361,7 +362,7 @@ form label {
       </label>
     </div>
   </div>
-  <a href="/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear ISO</a>
+  <a href="/main" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear ISO</a>
 
 </form>
 
