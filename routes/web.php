@@ -14,16 +14,16 @@ use App\Http\Controllers\UserControllerExample;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'prevent-back-history'],function(){
+  Auth::routes();
+  Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
+  Route::get('main/successlogin', [UserControllerExample::class,'successlogin']);
+  Route::get('main/logout', [UserControllerExample::class,'logout']);
+  Route::get('/main/create', function () { return view('create_iso');});
+  Route::get('/', function () { return view('welcome'); });
+
 });
 
-Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
-Route::get('main/successlogin', [UserControllerExample::class,'successlogin']);
-Route::get('main/logout', [UserControllerExample::class,'logout']);
-Route::get('/main/create', function () {
-    return view('create_iso');
-});
 //Route::get('main/logout', 'MainController@logout');
 
 //Route::get('main/logout', 'MainController@logout');
@@ -34,6 +34,5 @@ Route::get('/main/create', function () {
 
 //Route::get('users',[UserControllerExample::class,'index']);
 
-Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

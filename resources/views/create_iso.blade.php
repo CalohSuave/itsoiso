@@ -13,7 +13,7 @@ form label {
 @if(!isset(Auth::user()->email))
   <script>window.location = "/"</script>
 
-  @else
+@else
 
 
   <form style="margin-top: 5rem;">
