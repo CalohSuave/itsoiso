@@ -16,12 +16,13 @@ use App\Http\Controllers\UserControllerExample;
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
   Auth::routes();
-  Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
-  Route::get('main', [UserControllerExample::class,'successlogin']);
-  Route::get('main/logout', [UserControllerExample::class,'logout']);
-  Route::get('main/createiso', [UserControllerExample::class,'create']);
-  Route::get('/main/create', function () { return view('create_iso');});
   Route::get('/', function () { return view('welcome'); });
+  Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
+  Route::get('main', [UserControllerExample::class,'index']);
+  Route::get('main/logout', [UserControllerExample::class,'logout']);
+  Route::get('/main/create', function () { return view('create_iso');});
+  Route::get('main/createiso', [UserControllerExample::class,'create']);
+  
 
 });
 
@@ -31,9 +32,5 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 //Route::get('/uploadfile', 'UploadfileController@index');
 //Route::post('/uploadfile', 'UploadfileController@upload');
 //Route::get('/main', 'MainController@index');
-
- 
 //Route::get('users',[UserControllerExample::class,'index']);
-
-
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

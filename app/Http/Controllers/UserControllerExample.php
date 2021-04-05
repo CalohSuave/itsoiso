@@ -16,7 +16,9 @@ class UserControllerExample extends Controller
      /*Funcion que nos devuelve la vista basica de main */
     public function index()
     {
-        return view('welcome');
+      $listaIsos = Isos::all()->toArray();
+      return view('main_menu', compact('listaIsos'));
+
     }
 
     /*Función nativa de Laraverl que nos ayuda hacer el Atuh del usuario en la BBDD */
@@ -68,6 +70,7 @@ class UserControllerExample extends Controller
             return redirect('/main');
         }
     }
+
 
 
 

@@ -17,7 +17,7 @@
   
   
   @if(isset(Auth::user()->email))
-    <script>window.location="/main/successlogin";</script>
+    <script>window.location="/main";</script>
    @endif
 
   <div class="column2" style="background-color:#355C7D;">

@@ -21,24 +21,16 @@
       </tr>
     </thead>
     <tbody style="color: white; align-items: center;">
-      <tr>
-        <th scope="row">Windows 2012</th>
-        <td>21-02-2019 18:56</td>
-        <td>8GB</td>
-        <td><a href="#">Sí</a></td>
-      </tr>
-      <tr>
-        <th scope="row">Linux Ubuntu LTS</th>
-        <td>21-04-2019 18:56</td>
-        <td>366MB</td>
-        <td><a href="/isos/Ubuntu_LTS.iso" download>Sí</a></td>
-      </tr>
-      <tr>
-        <th scope="row">AIX</th>
-        <td>21-02-1999 08:56</td>
-        <td>4GB</td>
-        <td><a href="#">Sí</a></td>
-      </tr>
+    @isset($listaIsos)
+    @foreach($listaIsos as $row)
+   <tr>
+   <td>{{$row['so']}}</td>
+   <td>{{$row['created_at']}}</td>
+    <td>{{$row['size']}}</td>
+   </tr>
+   @endforeach
+    @endisset
+    
     </tbody>
   </table>
   <form method="get" action="{{ url('/main/create') }}">
