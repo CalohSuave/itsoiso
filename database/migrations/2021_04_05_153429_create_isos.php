@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRelationUserPlanes extends Migration
+class CreateIsos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateRelationUserPlanes extends Migration
      */
     public function up()
     {
-        Schema::create('userplan', function (Blueprint $table) {
-            $table->primary(['user_id','id_plan']);
+        Schema::create('isos', function (Blueprint $table) {
+            
+            $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('id_plan')->unsigned();
+            $table->string('so');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('deleted_to')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->decimal('size', $precision = 8, $scale = 2);
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('id_plan')->references('id')->on('planes');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateRelationUserPlanes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('userplan');
+        Schema::dropIfExists('isos');
     }
 }

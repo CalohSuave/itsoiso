@@ -19,6 +19,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
   Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
   Route::get('main', [UserControllerExample::class,'successlogin']);
   Route::get('main/logout', [UserControllerExample::class,'logout']);
+  Route::get('main/createiso', [UserControllerExample::class,'create']);
   Route::get('/main/create', function () { return view('create_iso');});
   Route::get('/', function () { return view('welcome'); });
 

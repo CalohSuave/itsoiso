@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
+use App\Models\Isos;
 
 
 class UserControllerExample extends Controller
@@ -48,6 +50,23 @@ class UserControllerExample extends Controller
     {
      Auth::logout();
      return redirect('/');
+    }
+
+    public function create(Request $request)
+    {
+
+        $tarea = new Isos();
+        /* $tarea -> id = ''; */
+        $tarea -> user_id = Auth::user()->id;
+        $tarea -> so = $request->input('SO');
+        //$tarea -> created_at = '';
+        //$tarea -> deleted_to = '';
+        $tarea -> size = 2;
+
+        $result = $tarea -> save();
+        if($result) {
+            return redirect('/main');
+        }
     }
 
 
