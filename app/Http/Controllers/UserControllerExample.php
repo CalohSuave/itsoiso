@@ -44,7 +44,7 @@ class UserControllerExample extends Controller
     function logout()
     {
      Auth::logout();
-     return view('welcome');
+     return redirect('/');
     }
 
 
