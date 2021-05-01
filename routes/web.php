@@ -19,11 +19,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
   Route::get('/', function () { return view('welcome'); });
   Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
   Route::get('main', [UserControllerExample::class,'index']);
-  Route::get('main/logout', [UserControllerExample::class,'logout']);
+  Route::get('/main/logout', [UserControllerExample::class,'logout']);
   Route::get('/main/create', function () { return view('create_iso');});
-  Route::get('main/createiso', [UserControllerExample::class,'create']);
-  
-
+  Route::get('/main/createUbuntu', function () { return view('create_iso_ubuntu');});
+  Route::get('/main/createiso', [UserControllerExample::class,'create']);
+  Route::get('temp',[UserControllerExample::class,'remove']);
+  Route::get('/delete/{id}', [UserControllerExample::class,'removeItem']);
 });
 
 //Route::get('main/logout', 'MainController@logout');

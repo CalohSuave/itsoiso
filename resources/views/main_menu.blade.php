@@ -7,36 +7,51 @@
 
   @else
 
-<div class="row contenedor">
+<div class="row contenedor" style="margin-top: 5% !important;">
   <div class="column1">
   <h1 style="color:white;">Lista ISO's</h3>
-	<h4 style="color:white;" >Aqui dispones de una breve lista de tus ultimas ISO's</h4>
+	<h4 style="color:white;">Aqui dispones de una breve lista de tus ultimas ISO's</h4>
 	<table class="table">
     <thead class="thead-light ">
       <tr>
         <th scope="col">Sistema Operativo</th>
+        <th scope="col">Idioma</th>
         <th scope="col">Fecha</th>
-        <th scope="col">Peso</th>
+        <th scope="col">Peso(GB)</th>
         <th scope="col">Descargar</th>
       </tr>
     </thead>
-    <tbody style="color: white; align-items: center;">
+    <tbody style="color: white; align-items: center; ">
     @isset($listaIsos)
-    @foreach($listaIsos as $row)
-   <tr>
-   <td>{{$row['so']}}</td>
-   <td>{{$row['created_at']}}</td>
-    <td>{{$row['size']}}</td>
+      @foreach($listaIsos as $row)
+      <tr>
+          <td>{{ $row->so }}</td>
+          <td>{{ $row->idioma}}</td>
+          <td>{{ $row->created_at }}</td>
+          <td>{{ $row->size }}</td>
+          <td><a href="{{ $row->link_descarga }}" download>Descargar</td>
+      </tr>
+  
+    
    </tr>
    @endforeach
     @endisset
     
     </tbody>
   </table>
+  <div class="input-group">
   <form method="get" action="{{ url('/main/create') }}">
-		<input type="submit" class="btn btn-primary" id="create" name="create" value="Create" style="margin-right:10px">
+		<input type="submit" class="btn btn-primary" id="create" name="create" value="Crear Windows" style="margin-right:10px">
 	</form>
-  </div> 
+  <form method="get" action="{{ url('/main/createUbuntu') }}">
+		<input type="submit" class="btn text-white" style="background-color: #ED7D31" id="create" name="create" value="Crear Ubuntu" style="margin-right:10px">
+	</form>
+  &nbsp;&nbsp;
+  <form method="get" action="{{ url('/temp') }}">
+		<input type="submit" class="btn btn-danger" id="create" name="create" value="Eliminar" style="margin-right:10px"> 
+	</form>
+  </div>
+</div> 
   
   <div class="column2">
   <div class="container mt-8 d-flex justify-content-center">
@@ -60,10 +75,6 @@
   </div>
 </div>
 @endif
-
-
-
-
 @endsection
 
 
