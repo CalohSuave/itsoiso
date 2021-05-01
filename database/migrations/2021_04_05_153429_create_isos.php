@@ -14,14 +14,13 @@ class CreateIsos extends Migration
     public function up()
     {
         Schema::create('isos', function (Blueprint $table) {
-            
-            $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->increments('id');
             $table->string('so');
+            $table->string('idioma');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('deleted_to')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->decimal('size', $precision = 8, $scale = 2);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('link_descarga');
         });
     }
 

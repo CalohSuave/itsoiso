@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
 use App\Models\Isos;
+use App\Models\RelUserIsos;
 
 
 class UserControllerExample extends Controller
@@ -16,8 +17,26 @@ class UserControllerExample extends Controller
      /*Funcion que nos devuelve la vista basica de main */
     public function index()
     {
-      $listaIsos = Isos::all()->toArray();
-      return view('main_menu', compact('listaIsos'));
+      if(Auth::check()){
+        
+        $listaIsos = DB::table('isos')
+        ->select('isos.so','isos.idioma', 'isos.created_at', 'isos.size','isos.link_descarga')
+        ->join(DB::raw('(SELECT id_iso FROM `rel_user_isos` where user_id = '.Auth::user()->id.') Usuario'), 
+        function($join)
+        {
+           $join->on('isos.id', '=', 'Usuario.id_iso');
+        })
+        ->get();
+      
+        #$listaIsos = Isos::()->where('user_id', Auth::user()->id)->toArray();
+        return view('main_menu', compact('listaIsos'));
+
+      }else{
+          /*$listaIsos = Isos::all()->toArray();*/
+          $listaIsos = Isos::all()->toArray();
+          return view('main_menu', compact('listaIsos'));
+      }
+
 
     }
 
@@ -57,22 +76,53 @@ class UserControllerExample extends Controller
     public function create(Request $request)
     {
 
-        $tarea = new Isos();
+        $tarea = new RelUserIsos();
         /* $tarea -> id = ''; */
         $tarea -> user_id = Auth::user()->id;
-        $tarea -> so = $request->input('SO');
+        $tarea -> id_iso = $request->input('SO');
         //$tarea -> created_at = '';
         //$tarea -> deleted_to = '';
-        $tarea -> size = 2;
-
         $result = $tarea -> save();
         if($result) {
             return redirect('/main');
         }
     }
 
+    public function remove()
+    {
+      if(Auth::check()){
+        
+        $listaIsos = DB::table('isos')
+        ->select('isos.so','isos.idioma', 'isos.created_at','Usuario.id')
+        ->join(DB::raw('(SELECT id_iso, id FROM `rel_user_isos` where user_id = '.Auth::user()->id.') Usuario'), 
+        function($join)
+        {
+           $join->on('isos.id', '=', 'Usuario.id_iso');
+        })
+        ->get();
+        #$listaIsos = Isos::()->where('user_id', Auth::user()->id)->toArray();
+        return view('remove_iso', compact('listaIsos'));
 
+      }else{
+          /*$listaIsos = Isos::all()->toArray();*/
+          $listaIsos = Isos::all()->toArray();
+          return view('remove_iso', compact('listaIsos'));
+      }
+    }
 
-
+    public function removeItem($id)
+    {
+      if(Auth::check()){
+        $result = RelUserIsos::where('id', $id)->delete();
+        if ($result) {
+          return redirect('/temp');  //esta variable id la pasamos para pintar en la página de confirmación el id que se ha borrado.
+        } else {
+          $listaIsos = Isos::all()->toArray();
+          return view('main_menu', compact('listaIsos'));
+          }
+      }
+  }
 
 }
+
+
