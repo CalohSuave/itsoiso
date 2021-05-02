@@ -17,13 +17,14 @@ use App\Http\Controllers\UserControllerExample;
 Route::group(['middleware' => 'prevent-back-history'],function(){
   Auth::routes();
   Route::get('/', function () { return view('welcome'); });
+  Route::post('/addUser', [UserControllerExample::class,'addUser']);
   Route::post('/main/checklogin', [UserControllerExample::class,'checklogin']);
   Route::get('main', [UserControllerExample::class,'index']);
   Route::get('/main/logout', [UserControllerExample::class,'logout']);
   Route::get('/main/create', function () { return view('create_iso');});
   Route::get('/main/createUbuntu', function () { return view('create_iso_ubuntu');});
   Route::get('/main/createiso', [UserControllerExample::class,'create']);
-  Route::get('temp',[UserControllerExample::class,'remove']);
+  Route::get('/remove_iso',[UserControllerExample::class,'remove']);
   Route::get('/delete/{id}', [UserControllerExample::class,'removeItem']);
 });
 

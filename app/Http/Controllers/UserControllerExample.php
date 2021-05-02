@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
 use App\Models\Isos;
+use App\Models\User;
 use App\Models\RelUserIsos;
 
 
@@ -115,7 +116,7 @@ class UserControllerExample extends Controller
       if(Auth::check()){
         $result = RelUserIsos::where('id', $id)->delete();
         if ($result) {
-          return redirect('/temp');  //esta variable id la pasamos para pintar en la página de confirmación el id que se ha borrado.
+          return redirect('/remove_iso');  //esta variable id la pasamos para pintar en la página de confirmación el id que se ha borrado.
         } else {
           $listaIsos = Isos::all()->toArray();
           return view('main_menu', compact('listaIsos'));
@@ -123,6 +124,26 @@ class UserControllerExample extends Controller
       }
   }
 
-}
+  function addUser(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        
+      $data = $request->all(); // This will get all the request data.
+	    $userCount = User::where('email', $data['email']);
+	    if ($userCount->count()) {
+		    return back()->with('error', 'Credenciales incorrectas, ya existe un usuario con ese email');
+	    } else {
+		    $user = User::create(request(['name','surname' ,'email', 'password']));
+        auth()->login($user);
+        return redirect()->to('/main');
+	    }
+        
+    }
 
+}
 

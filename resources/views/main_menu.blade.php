@@ -47,7 +47,7 @@
 		<input type="submit" class="btn text-white" style="background-color: #ED7D31" id="create" name="create" value="Crear Ubuntu" style="margin-right:10px">
 	</form>
   &nbsp;&nbsp;
-  <form method="get" action="{{ url('/temp') }}">
+  <form method="get" action="{{ url('/remove_iso') }}">
 		<input type="submit" class="btn btn-danger" id="create" name="create" value="Eliminar" style="margin-right:10px"> 
 	</form>
   </div>
