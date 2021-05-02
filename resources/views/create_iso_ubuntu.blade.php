@@ -19,7 +19,7 @@ form label {
 <div class="card-deck">
 <a class="btn btn-danger" href="/main" role="button" style="display: flex; align-items: center;background-color: #ED7D31">Atrás</a>
   <div class="card text-white" style="background-color: #ED7D31">
-    <img class="card-img-top" src="https://logos-marcas.com/wp-content/uploads/2020/11/Ubuntu-Logotipo-2004-2010.jpg"  alt="Card image cap">
+    <img class="card-img-top" src="/images/ubuntu.jpg"  alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Ubuntu 16 LTS</h5>
       <p class="card-text"><b>Usuario</b>: root<br><b>Password</b>: toor<br><b>Version</b>:16.04</p>
@@ -31,7 +31,7 @@ form label {
     
   </div>
   <div class="card text-white" style="background-color: #ED7D31">
-    <img class="card-img-top" src="https://logos-marcas.com/wp-content/uploads/2020/11/Ubuntu-Logotipo-2004-2010.jpg"  alt="Card image cap">
+    <img class="card-img-top" src="/images/ubuntu.jpg"  alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Ubuntu 18 LTS</h5>
       <p class="card-text"><b>Usuario</b> root<br><b>Password</b>: toor<br><b>Version</b>:18.04</p>
@@ -42,7 +42,7 @@ form label {
     </div>
   </div>
   <div class="card text-white" style="background-color: #ED7D31">
-    <img class="card-img-top" src="https://logos-marcas.com/wp-content/uploads/2020/11/Ubuntu-Logotipo-2004-2010.jpg"  alt="Card image cap">
+    <img class="card-img-top" src="/images/ubuntu.jpg"  alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Ubuntu 20 LTS</h5>
       <p class="card-text"><b>Usuario</b> root<br><b>Password</b>: toor<br><b>Version</b>:20.4</p>
