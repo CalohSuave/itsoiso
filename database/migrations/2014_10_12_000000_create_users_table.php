@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->integer('id_plan')->default('0');
             $table->string('name');
             $table->string('surname');
-            $table->string('surname2');
-            $table->string('numaccount');
+            $table->string('surname2')->nullable();;
+            $table->string('numaccount')->nullable();;
             $table->string('email')->unique();
-            $table->timestamps('datebirth');
+            $table->timestamps('datebirth')->nullable();;
             $table->string('password');
 
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
@@ -19,59 +20,45 @@ class UserControllerExample extends Controller
     public function index()
     {
       if(Auth::check()){
-        
         $listaIsos = DB::table('isos')
-        ->select('isos.so','isos.idioma', 'isos.created_at', 'isos.size','isos.link_descarga')
-        ->join(DB::raw('(SELECT id_iso FROM `rel_user_isos` where user_id = '.Auth::user()->id.') Usuario'), 
-        function($join)
-        {
-           $join->on('isos.id', '=', 'Usuario.id_iso');
-        })
-        ->get();
-      
+          ->select('isos.so','isos.idioma', 'isos.created_at', 'isos.size','isos.link_descarga')
+          ->join(DB::raw('(SELECT id_iso FROM `rel_user_isos` where user_id = '.Auth::user()->id.') Usuario'), 
+          function($join){$join->on('isos.id', '=', 'Usuario.id_iso');})->get();
         #$listaIsos = Isos::()->where('user_id', Auth::user()->id)->toArray();
         return view('main_menu', compact('listaIsos'));
-
       }else{
           /*$listaIsos = Isos::all()->toArray();*/
-          $listaIsos = Isos::all()->toArray();
-          return view('main_menu', compact('listaIsos'));
+          return view('welcome');
       }
-
-
     }
 
     /*Función nativa de Laraverl que nos ayuda hacer el Atuh del usuario en la BBDD */
     function checklogin(Request $request){
      
-        $this->validate($request, [
-            'email'   => 'required',
-            'password'  => 'required|alphaNum|min:3']);
+      $this->validate($request, [
+        'email'   => 'required',
+        'password'  => 'required|alphaNum|min:3']);
 
-     $user_data = array(
-      'email'  => $request->get('email'),
-      'password' => $request->get('password')
-     );
+      $user_data = array(
+        'email'  => $request->get('email'),
+        'password' => $request->get('password')
+      );
     
-    if(Auth::attempt($user_data)){
-      return redirect('main');
-    }else{
-      return back()->with('error', 'Credenciales incorrectas, revise los datos');
-    }
+      if(Auth::attempt($user_data)){
+        return redirect('main');
+      }else{
+        return back()->with('error', 'Credenciales incorrectas, revise los datos');
+      }
 
     }
 
-    /*Funcion que nos devuelve la vista del main_menu, es decir donde podemos crear ISO's y hacver logout */
-    function successlogin()
-    {
-     return view('main_menu');
-    }
 
     /* Funciona para acabar con la sesión del usuario actual */
     function logout()
     {
      Auth::logout();
-     return redirect('/');
+     return redirect()->to('/');
+     
     }
 
     public function create(Request $request)
@@ -116,7 +103,7 @@ class UserControllerExample extends Controller
       if(Auth::check()){
         $result = RelUserIsos::where('id', $id)->delete();
         if ($result) {
-          return redirect('/remove_iso');  //esta variable id la pasamos para pintar en la página de confirmación el id que se ha borrado.
+          return redirect('/remove_iso'); 
         } else {
           $listaIsos = Isos::all()->toArray();
           return view('main_menu', compact('listaIsos'));
@@ -133,7 +120,7 @@ class UserControllerExample extends Controller
             'password' => 'required'
         ]);
         
-      $data = $request->all(); // This will get all the request data.
+      $data = $request->all(); 
 	    $userCount = User::where('email', $data['email']);
 	    if ($userCount->count()) {
 		    return back()->with('error', 'Credenciales incorrectas, ya existe un usuario con ese email');

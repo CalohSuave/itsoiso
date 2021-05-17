@@ -2,7 +2,6 @@
 @section('title', 'Page Title')
 @section('content')
 
-
 <style>
 
 form label {

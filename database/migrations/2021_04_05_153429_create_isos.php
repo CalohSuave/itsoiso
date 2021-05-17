@@ -18,7 +18,7 @@ class CreateIsos extends Migration
             $table->string('so');
             $table->string('idioma');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('deleted_to')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamp('deleted_to')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->decimal('size', $precision = 8, $scale = 2);
             $table->string('link_descarga');
         });
